@@ -1,2 +1,5 @@
 jackL -- 2018-10-15 13:56
 Created and configured project repo
+
+jackL -- 2018-10-15 23:43
+Added design.pdf
