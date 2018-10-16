@@ -3,3 +3,6 @@ Created and configured project repo
 
 jackL -- 2018-10-15 23:43
 Added design.pdf
+
+billN -- 2018-10-16 13:49
+Added team logo and fixed up README
