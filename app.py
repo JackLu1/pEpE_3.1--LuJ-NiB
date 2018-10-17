@@ -8,6 +8,6 @@ def root():
 
 @app.route("/splash")
 def landing():
-	return render_template("base.html")
+	return render_template("splash.html")
 
 app.run()
