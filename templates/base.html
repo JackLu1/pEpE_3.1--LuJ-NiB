@@ -1,11 +1,26 @@
 <html>
 
 	<head>
-
+		{% block head %}
+			<title>
+				{% block title %}{% end block %} - pEpE_3.1
+			</title>
+		{% endblock %}
 	</head>
 
 	<body>
+		{% block content %}
+		{% endblock %}
 
+		{% block footer %}
+		<center>
+			&copy; Copyright 2018 by pEpE_3.1
+
+			<br>
+
+			designed by jack lu and bill ni
+		</center>
+		{% endblock %}
 	</body>
-	
+
 </html>
