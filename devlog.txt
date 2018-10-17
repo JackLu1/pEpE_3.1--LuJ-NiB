@@ -65,3 +65,11 @@ jackL -- 2018-10-17 01:19
     comments and documentation
     plan time wisely to avoid rushing to meet deadline
 ==============================================================
+
+jackL -- 2018-10-17 14:03
+--------------------------------------------------------------
+basic setup:
+    basic routing setup
+    made html/jinja templates
+    devlog formatting update
+==============================================================
