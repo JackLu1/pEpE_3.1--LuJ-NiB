@@ -1,20 +1,67 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+USAGE:
+* Replace all fields, angle brackets included, with specified info.
+  eg, pd <pd#> --> pd 3
+* Delete these instructions once all teammates understand usage.
+  (from tilde bar above to tilde bar below)
+* rename this file devlog.txt
+
+devlog--
+Use keyboard shortcut to jump to end,
+ replicate entry template, (Ctrl-Shift up x5, Ctrl-X, Ctrl-V x2)
+ modify appropriately.
+Each entry should begin with the following format:
+ firstL -- TIMESTAMP\n
+e.g.: 
+clydeS -- 2999-12-31 23:59
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+pEpE_3.1
+Jack Lu
+Bill Ni
+pd 8
+---------------------
+Project0
+
+
+ ______   ______   __   __   __       ______   _______     
+/_____/\ /_____/\ /_/\ /_/\ /_/\     /_____/\ /______/\    
+\:::_ \ \\::::_\/_\:\ \\ \ \\:\ \    \:::_ \ \\::::__\/__  
+ \:\ \ \ \\:\/___/\\:\ \\ \ \\:\ \    \:\ \ \ \\:\ /____/\ 
+  \:\ \ \ \\::___\/_\:\_/.:\ \\:\ \____\:\ \ \ \\:\\_  _\/ 
+   \:\/.:| |\:\____/\\ ..::/ / \:\/___/\\:\_\ \ \\:\_\ \ \ 
+    \____/_/ \_____\/ \___/_(   \_____\/ \_____\/ \_____\/ 
+==============================================================
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+
 jackL -- 2018-10-15 13:56
+--------------------------------------------------------------
 Created and configured project repo
+==============================================================
 
 jackL -- 2018-10-15 23:43
+--------------------------------------------------------------
 Added design.pdf
+==============================================================
 
 billN -- 2018-10-16 13:49
+--------------------------------------------------------------
 Added team logo and fixed up README
+==============================================================
 
 jackL -- 2018-10-17 01:15
+--------------------------------------------------------------
 Revised design doc
 Added missing 'create story' feature
 Detailed component map of project
 Explanation of database schema
+==============================================================
 
 jackL -- 2018-10-17 01:19
+--------------------------------------------------------------
 3 things to adhere by:
     consistent and useful variable naming scheme
     comments and documentation
     plan time wisely to avoid rushing to meet deadline
+==============================================================
