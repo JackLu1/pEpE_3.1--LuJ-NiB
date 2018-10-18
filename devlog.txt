@@ -83,4 +83,5 @@ Created templates for story
 billN -- 2018-10-18 13:47
 --------------------------------------------------------------
 Added welcome page
+Edited app.py to accomodate
 ==============================================================
