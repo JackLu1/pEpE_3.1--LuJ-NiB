@@ -5,19 +5,18 @@ Welcome
 {% endblock %}
 
 {% block content %}
-<div>
+<table>
+  <th>
+    <td align="left">
+      Username: {{name}}
+    </td>
 
-  <div align="left">
-    Username: {{name}}
-  </div>
-
-  <div align="right">
-    <form action="/search" name="query" method="GET">
-      <input type="text" name="search" placeholder="Search Stories">
-    </form>
-  </div>
-
-</div>
+    <td align="right">
+      <form action="/search" name="query" method="GET">
+	<input type="text" name="search" placeholder="Search Stories">
+      </form>
+    </td>
+</table>
 
 <center>
 
