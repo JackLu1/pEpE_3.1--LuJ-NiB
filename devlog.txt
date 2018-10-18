@@ -77,4 +77,5 @@ basic setup:
 jackL -- 2018-10-18 02:33
 --------------------------------------------------------------
 Created database and relational tables
+Created templates for story
 ==============================================================
