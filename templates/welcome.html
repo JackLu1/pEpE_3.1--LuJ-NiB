@@ -5,12 +5,18 @@ Welcome
 {% endblock %}
 
 {% block content %}
-Username: {{name}}
+<div>
 
-<div align="right">
-  <form action="/search" name="query" method="GET">
-    <input type="text" name="search" placeholder="Search Stories">
-  </form>
+  <div align="left">
+    Username: {{name}}
+  </div>
+
+  <div align="right">
+    <form action="/search" name="query" method="GET">
+      <input type="text" name="search" placeholder="Search Stories">
+    </form>
+  </div>
+
 </div>
 
 <center>
