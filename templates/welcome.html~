@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}
+Welcome
+{% endblock %}
+
+{% block content %}
+<center>
+
+<br><br>
+
+  
+  
+</center>
+{% endblock %}
