@@ -10,4 +10,12 @@ def root():
 def landing():
 	return render_template("splash.html")
 
+@app.route("/login")
+def redir():
+    return redirect(url_for("welcome"))
+
+@app.route("/welcome")
+def welcome():
+    return render_template("welcome.html")
+
 app.run()
