@@ -1,0 +1,40 @@
+<html>
+
+	<head>
+		{% block head %}
+			<title>
+				{% block title %}{% endblock %} - pEpE_3.1
+			</title>
+		{% endblock %}
+	</head>
+
+	<body>
+		{% block content %}
+
+			<
+			<form action="/edit" name="addition" method="POST">
+
+				<input type="textarea" name="content">
+
+				<br><br>
+
+				<button type="submit" name="submit">
+					Submit
+				</button>
+
+			</form>
+
+		{% endblock %}
+
+		{% block footer %}
+		<center>
+			&copy; Copyright 2018 by pEpE_3.1
+
+			<br>
+
+			designed by jack lu and bill ni
+		</center>
+		{% endblock %}
+	</body>
+
+</html>
