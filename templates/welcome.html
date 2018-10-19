@@ -5,17 +5,30 @@ Welcome
 {% endblock %}
 
 {% block content %}
-<table>
-  <th>
-    <td align="left">
-      Username: {{name}}
-    </td>
+<br><br>
 
-    <td align="right">
-      <form action="/search" name="query" method="GET">
-	<input type="text" name="search" placeholder="Search Stories">
-      </form>
-    </td>
+<table width="100%">
+  	<tr>
+	    <td align="left" valign="top">
+	    	Username: {{name}}
+	    </td>
+
+	    <td align="right" valign="top">
+	    	<form action="/search" name="query" method="GET">
+				<input type="text" name="search" placeholder="Search Stories">
+	    	</form>
+	    </td>
+	</tr>
+
+	<tr>
+		<td>
+			<form action="/logout" name="logout" method="POST">
+				<button type="submit" name="logout">
+					Logout
+				</button>
+			</form>
+		</td>
+	</tr>
 </table>
 
 <center>

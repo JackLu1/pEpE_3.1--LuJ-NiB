@@ -18,5 +18,9 @@ def redir():
 def welcome():
     return render_template("welcome.html", name='bni')
 
+@app.route("/logout", methods=["POST"])
+def logout():
+	return redirect(url_for("landing"))
+
 app.debug = True
 app.run()
