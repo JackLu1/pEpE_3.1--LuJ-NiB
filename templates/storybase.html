@@ -11,18 +11,29 @@
 	<body>
 		{% block content %}
 
-			<
-			<form action="/edit" name="addition" method="POST">
+			<center>
 
-				<input type="textarea" name="content">
+				<h1>{{ title }}</h1>
 
 				<br><br>
 
-				<button type="submit" name="submit">
-					Submit
-				</button>
+				{{ content }}
 
-			</form>
+				<br><br>
+
+				<form action="/edit" name="addition" method="POST">
+
+					<input type="textarea" name="content">
+
+					<br><br>
+
+					<button type="submit" name="submit">
+						Submit
+					</button>
+
+				</form>
+
+			<center>
 
 		{% endblock %}
 
