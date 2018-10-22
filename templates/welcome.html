@@ -5,34 +5,51 @@ Welcome
 {% endblock %}
 
 {% block content %}
-<table width="100%">
-  	<tr>
-	    <td align="left" valign="top">
-	    	Username: {{name}}
-	    </td>
+<center>
 
-	    <td align="right" valign="top">
-	    	<form action="/search" name="query" method="GET">
-				<input type="text" name="search" placeholder="Search Stories">
-	    	</form>
-	    </td>
+<table width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="left" valign="top">
+    	Username: {{name}}
+    </td>
+
+    <td align="right" valign="top">
+    	<form action="/search" name="query" method="GET">
+			<input type="text" name="search" placeholder="Search Stories">
+    	</form>
+    </td>
 	</tr>
 
 	<tr>
-		<td>
+		<td align="left" valign="top">
 			<form action="/logout" name="logout" method="POST">
 				<button type="submit" name="logout">
 					Logout
 				</button>
 			</form>
 		</td>
+
+    <td align="right" valign="top">
+      <form action="/browse" name="browse">
+        <button type="submit" name="browse">
+          Browse Stories
+        </button>
+      </form>
+    </td>
 	</tr>
 </table>
 
-<center>
+<h1>super_story</h1>
 
+<br>
+
+super_story is an audience-led site where every user has one chance to contribute to a story of the many that exist
 <br><br>
+after you have submitted your desired addition, you can no longer contribute to the same story, but you can then see the entirety of it
+<br><br>
+good luck, have fun
+<br><br>
+<br>
 
-  
 </center>
 {% endblock %}
