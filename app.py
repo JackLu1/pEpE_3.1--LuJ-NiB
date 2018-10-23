@@ -4,31 +4,38 @@ app = Flask(__name__);
 
 @app.route("/")
 def root():
-	return redirect(url_for("landing"))
+    '''If user not logged in, redirect to landing page. Otherwise redirect to welcome page'''
+    return redirect(url_for("landing"))
 
 @app.route("/splash")
 def landing():
-	return render_template("splash.html")
+    '''renders splash (landing) page'''
+    return render_template("splash.html")
 
 @app.route("/login", methods=["POST"])
 def redir():
+    '''redirect to welcome page when login successful'''
     return redirect(url_for("welcome"))
 
 @app.route("/welcome")
 def welcome():
+    '''welcomes user'''
     return render_template("welcome.html", name='bni')
 
 @app.route("/logout", methods=["POST"])
 def logout():
-	return redirect(url_for("landing"))
+    '''ends session, redirect back to landing page'''
+    return redirect(url_for("landing"))
 
 @app.route("/browse")
 def library():
-	return render_template("library.html", stories=[])
+    '''renders a list of stories'''
+    return render_template("library.html", stories=[])
 
 @app.route("/edit")
 def edit():
-	return render_template("storybase.html", title="", content="")
+    '''edit page for story'''
+    return render_template("storybase.html", title="", content="")
 
 app.debug = True
 app.run()
