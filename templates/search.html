@@ -18,7 +18,7 @@ Search
 {% for story in stories %}
 
 	<form action="/edit">
-		<button type="submit" name="storylink" value="{{ story[storyid] }}">
+		<button type="submit" name="storylink" value="{{ story[0] }}">
 			{{ story[0] }} : {{ story[1] }}
 		</button>
 	</form>

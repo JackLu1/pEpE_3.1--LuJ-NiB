@@ -1,5 +1,5 @@
-from flask import Flask, render_template, redirect, url_for
-from util import storyreturn
+from flask import Flask, render_template, redirect, url_for, request
+from util import storyreturn, storyedit
 
 app = Flask(__name__);
 
@@ -33,10 +33,17 @@ def library():
     '''renders a list of stories'''
     return render_template("library.html", stories=storyreturn.all_stories())
 
-@app.route("/edit")
+@app.route("/edit", methods=["GET", "POST"])
 def edit():
     '''edit page for story'''
-    return render_template("storybase.html", title="", content="")
+    if "addition" not in list(request.form.keys()):
+        sID = int(request.args["storylink"])
+        story = storyreturn.get(sID)
+        return render_template("storybase.html", title=story[1], content=story[2], storyID=sID)
+    else:
+        storyedit.edit(int(request.form["storylink"]), request.form["addition"])
+        return redirect(url_for("welcome"))
+
 
 @app.route("/search")
 def search():

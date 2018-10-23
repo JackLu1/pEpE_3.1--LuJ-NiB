@@ -15,7 +15,7 @@
 
 				<h1>{{ title }}</h1>
 
-				<br><br>
+				<br>
 
 				{{ content }}
 
@@ -23,11 +23,12 @@
 
 				<form action="/edit" name="addition" method="POST">
 
-					<input type="textarea" name="content">
+					<textarea name="addition" placeholder="Addition">
+					</textarea>
 
 					<br><br>
 
-					<button type="submit" name="submit">
+					<button type="submit" name="storylink" value="{{ storyID }}">
 						Submit
 					</button>
 
