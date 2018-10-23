@@ -31,7 +31,7 @@ def logout():
 @app.route("/browse")
 def library():
     '''renders a list of stories'''
-    return render_template("library.html", stories=[])
+    return render_template("library.html", stories=storyreturn.all_stories())
 
 @app.route("/edit")
 def edit():
@@ -41,7 +41,7 @@ def edit():
 @app.route("/search")
 def search():
 	'''search results page'''
-	return render_template("library.html", stories=[])
+	return render_template("library.html", stories=storyreturn.search(request.args["search"]))
 
 app.debug = True
 app.run()
