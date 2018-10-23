@@ -26,5 +26,9 @@ def logout():
 def library():
 	return render_template("library.html", stories=[])
 
+@app.route("/edit")
+def edit():
+	return render_template("storybase.html", title="", content="")
+
 app.debug = True
 app.run()
