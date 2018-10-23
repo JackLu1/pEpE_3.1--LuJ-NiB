@@ -22,5 +22,9 @@ def welcome():
 def logout():
 	return redirect(url_for("landing"))
 
+@app.route("/browse")
+def library():
+	return render_template("library.html", stories=[])
+
 app.debug = True
 app.run()
