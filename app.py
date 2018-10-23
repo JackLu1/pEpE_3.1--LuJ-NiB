@@ -1,4 +1,5 @@
 from flask import Flask, render_template, redirect, url_for
+from util import storyreturn
 
 app = Flask(__name__);
 
@@ -20,7 +21,7 @@ def redir():
 @app.route("/welcome")
 def welcome():
     '''welcomes user'''
-    return render_template("welcome.html", name='bni')
+    return render_template("welcome.html")
 
 @app.route("/logout", methods=["POST"])
 def logout():
@@ -36,6 +37,11 @@ def library():
 def edit():
     '''edit page for story'''
     return render_template("storybase.html", title="", content="")
+
+@app.route("/search")
+def search():
+	'''search results page'''
+	return render_template("library.html", stories=[])
 
 app.debug = True
 app.run()
