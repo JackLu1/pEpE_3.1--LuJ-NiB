@@ -1,11 +1,42 @@
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, redirect, url_for, request, session
 from util import storyreturn, storyedit
+import os
+
+# TODO fix welcome page not rendering name
 
 app = Flask(__name__);
+
+# temporary hard coded user
+usr = 'jlu'
+pw = '123'
+# generate secret key
+app.secret_key = os.urandom(32)
 
 @app.route("/")
 def root():
     '''If user not logged in, redirect to landing page. Otherwise redirect to welcome page'''
+    if usr in session:
+        return render_template('welcome.html', name = usr)
+    return redirect(url_for("landing"))
+
+@app.route("/login", methods=["POST"])
+def auth():
+    '''logs in the user'''
+    check_usr = request.form["user"]
+    check_pw = request.form["pass"]
+
+    # checks correct password
+    if check_pw != pw or check_usr != usr:
+        return redirect(url_for('root'))
+    
+    #logs in the user, redirect to welcome page
+    session[usr] = pw
+    return redirect(url_for('welcome'))
+
+@app.route("/logout", methods=["POST"])
+def logout():
+    '''ends session, redirect back to landing page'''
+    session.pop(usr)
     return redirect(url_for("landing"))
 
 @app.route("/splash")
@@ -23,10 +54,6 @@ def welcome():
     '''welcomes user'''
     return render_template("welcome.html")
 
-@app.route("/logout", methods=["POST"])
-def logout():
-    '''ends session, redirect back to landing page'''
-    return redirect(url_for("landing"))
 
 @app.route("/browse")
 def library():
@@ -47,8 +74,8 @@ def edit():
 
 @app.route("/search")
 def search():
-	'''search results page'''
-	return render_template("library.html", stories=storyreturn.search(request.args["search"]))
+    '''search results page'''
+    return render_template("library.html", stories=storyreturn.search(request.args["search"]))
 
 app.debug = True
 app.run()
