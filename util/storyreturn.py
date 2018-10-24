@@ -6,12 +6,11 @@ def all_stories():
 
     c.execute("SELECT * FROM stories")
     returnList = c.fetchall()
-
-    overlaps = {}
-
-    for tup # asiofioasjdfioashdgjkoasndfonasdiofjasiodj doesn't work
-
+    
     db.close()
+    
+    returnList = removeOverlap(returnList)
+
     return returnList
 
 def search( whatLook ):
@@ -25,7 +24,23 @@ def search( whatLook ):
         if whatLook in tup[1] or whatLook in tup[2]:
             results.append(tup)
     db.close()
+
+    results = removeOverlap(results)
+
     return results
+
+def removeOverlap( stories ):
+    overlaps = {}
+
+    for tup in stories:
+        if tup[0] not in overlaps.keys():
+            overlaps[tup[0]] = tup
+        else:
+            if tup[3] > overlaps[tup[0]][3]:
+                overlaps[tup[0]] = tup
+
+    returnList = list(overlaps.values())
+    return returnList
 
 def get( sID ):
     db = sqlite3.connect("data/data.db")
