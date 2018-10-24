@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect, url_for, request, session
 from util import storyreturn, storyedit
 import os
 
+#TODO add flashing for failed login
 
 app = Flask(__name__);
 
