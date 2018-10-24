@@ -2,7 +2,6 @@ from flask import Flask, render_template, redirect, url_for, request, session
 from util import storyreturn, storyedit
 import os
 
-# TODO fix welcome page not rendering name
 
 app = Flask(__name__);
 
@@ -16,7 +15,7 @@ app.secret_key = os.urandom(32)
 def root():
     '''If user not logged in, redirect to landing page. Otherwise redirect to welcome page'''
     if usr in session:
-        return render_template('welcome.html', name=usr)
+        return redirect(url_for("welcome"))
     return redirect(url_for("landing"))
 
 @app.route("/login", methods=["POST"])
