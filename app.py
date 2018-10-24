@@ -16,7 +16,7 @@ app.secret_key = os.urandom(32)
 def root():
     '''If user not logged in, redirect to landing page. Otherwise redirect to welcome page'''
     if usr in session:
-        return render_template('welcome.html', name = usr)
+        return render_template('welcome.html', name=usr)
     return redirect(url_for("landing"))
 
 @app.route("/login", methods=["POST"])
@@ -28,7 +28,7 @@ def auth():
     # checks correct password
     if check_pw != pw or check_usr != usr:
         return redirect(url_for('root'))
-    
+
     #logs in the user, redirect to welcome page
     session[usr] = pw
     return redirect(url_for('welcome'))
@@ -52,7 +52,7 @@ def redir():
 @app.route("/welcome")
 def welcome():
     '''welcomes user'''
-    return render_template("welcome.html")
+    return render_template("welcome.html", name=usr)
 
 
 @app.route("/browse")
