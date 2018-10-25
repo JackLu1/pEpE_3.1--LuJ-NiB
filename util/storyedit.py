@@ -14,8 +14,8 @@ def edit(sID, addition):
         if sID == tup[0]:
             title = tup[1]
 
-    material = (sID, title, addition, max + 1)
+    material = (sID, title, addition, max + 1, 0) # make sure 0 will be replaced with userid (get from users / signed in acc)
 
-    c.execute("INSERT INTO stories VALUES(?, ?, ?, ?)", material)
+    c.execute("INSERT INTO stories VALUES(?, ?, ?, ?, ?)", material)
     db.commit()
     db.close()
