@@ -78,9 +78,15 @@ def search():
     '''search results page'''
     s = storyreturn.search(request.args["search"])
     if len(s) == 0:
-        return render_template("library.html", e=True, stories=[])
+        return render_template("search.html", e=True, stories=[])
     else:
-        return render_template("library.html", e=False, stories=storyreturn.search(request.args["search"]))
+        return render_template("search.html", e=False, stories=storyreturn.search(request.args["search"]))
+
+@app.route("/add")
+def add():
+    if "addition" in request.form.keys():
+    else:
+        return render_template("addstory.html")
 
 app.debug = True
 app.run()

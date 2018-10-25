@@ -15,7 +15,15 @@ Search
 
 <br>
 
-{{ emptymsg }}
+{% if e %}
+
+	<form action='/add' name='addition' method='POST'>
+		<button type='submit'>
+			Add a Story
+		</button>
+	</form>
+
+{% endif %}
 
 {% for story in stories %}
 
@@ -26,6 +34,8 @@ Search
 	</form>
 
 {% endfor %}
+
+<br><br>
 
 </center>
 {% endblock %}
