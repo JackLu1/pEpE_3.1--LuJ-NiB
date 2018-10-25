@@ -1,0 +1,50 @@
+<html>
+
+	<head>
+		{% block head %}
+			<title>
+				Add a Story - pEpE_3.1
+			</title>
+		{% endblock %}
+	</head>
+
+	<body>
+		{% block content %}
+
+			<center>
+
+				<h1>Add a Story</h1>
+
+				<br><br>
+
+				<form action="/add" name="addition" method="POST">
+
+          <input type="text" name="title" placeholder="Title">
+
+					<textarea name="addition" placeholder="Addition" rows="10" cols="80">
+					</textarea>
+
+					<br><br>
+
+					<button type="submit">
+						Submit
+					</button>
+
+				</form>
+
+			<center>
+
+		{% endblock %}
+
+		{% block footer %}
+		<center>
+			&copy; Copyright 2018 by pEpE_3.1
+
+			<br>
+
+			designed by jack lu and bill ni
+		</center>
+		{% endblock %}
+	</body>
+
+</html>

@@ -15,6 +15,14 @@ Browse
 
 <br>
 
+{% if e %}
+	<form action='/add' name='addition' method='POST'>
+		<button type='submit'>
+			Add a Story
+		</button>
+	</form>
+{% endif %}
+
 {% for story in stories %}
 
 	<form action="/edit">

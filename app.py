@@ -75,7 +75,11 @@ def edit():
 @app.route("/search")
 def search():
     '''search results page'''
-    return render_template("library.html", stories=storyreturn.search(request.args["search"]))
+    s = storyreturn.search(request.args["search"])
+    if len(s) == 0:
+        return render_template("library.html", e=True, stories=[])
+    else:
+        return render_template("library.html", e=False, stories=storyreturn.search(request.args["search"]))
 
 app.debug = True
 app.run()
