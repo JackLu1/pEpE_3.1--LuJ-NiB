@@ -110,3 +110,8 @@ jackL -- 2018-10-24 02:28
 Login/logout functional with temporary hard-coded user.
 Functional session
 ==============================================================
+
+jackL -- 2018-10-25 14:01
+--------------------------------------------------------------
+Added editing capabilities and improved search functionality
+==============================================================
