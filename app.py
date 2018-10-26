@@ -85,7 +85,7 @@ def search():
 @app.route("/add")
 def add():
     if "addition" in request.form.keys() and "title" in request.form.keys():
-        if request.form["addition"] == "" || request.form["title"] == "":
+        if request.form["addition"] == "" or request.form["title"] == "":
             return render_template("addstory.html")
         else:
             storyedit.add(request.form["addition"], request.form["title"])
