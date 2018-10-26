@@ -34,7 +34,7 @@ def add(addition, title):
         if tup[3] > emx:
             emx = tup[3]
 
-    material = (mx, title, addition, emx + 1, 0) # make sure 0 will be replaced with userid (get from users / signed in acc)
+    material = (mx + 1, title, addition, emx + 1, 0) # make sure 0 will be replaced with userid (get from users / signed in acc)
 
     c.execute("INSERT INTO stories VALUES(?, ?, ?, ?, ?)", material)
     db.commit()
