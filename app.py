@@ -82,7 +82,7 @@ def search():
     else:
         return render_template("search.html", e=False, stories=storyreturn.search(request.args["search"]))
 
-@app.route("/add")
+@app.route("/add", methods=["GET", "POST"])
 def add():
     if "addition" in request.form.keys() and "title" in request.form.keys():
         if request.form["addition"] == "" or request.form["title"] == "":
