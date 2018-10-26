@@ -19,3 +19,23 @@ def edit(sID, addition):
     c.execute("INSERT INTO stories VALUES(?, ?, ?, ?, ?)", material)
     db.commit()
     db.close()
+
+def add(addition, title):
+    db = sqlite3.connect("data/data.db")
+    c = db.cursor()
+    c.execute("SELECT * FROM stories")
+    al = c.fetchall()
+    mx = 0
+    emx = 0
+    for tup in al:
+        if tup[0] > mx:
+            mx = tup[0]
+
+        if tup[3] > emx:
+            emx = tup[3]
+
+    material = (mx, title, addition, emx + 1, 0) # make sure 0 will be replaced with userid (get from users / signed in acc)
+
+    c.execute("INSERT INTO stories VALUES(?, ?, ?, ?, ?)", material)
+    db.commit()
+    db.close()

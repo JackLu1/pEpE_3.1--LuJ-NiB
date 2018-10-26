@@ -70,7 +70,7 @@ def edit():
         return render_template("storybase.html", title=story[1], content=story[2], storyID=sID)
     else:
         storyedit.edit(int(request.form["storylink"]), request.form["addition"])
-        return redirect(url_for("welcome"))
+        return render_template("library.html", stories=storyreturn.all_stories())
 
 
 @app.route("/search")
@@ -84,7 +84,12 @@ def search():
 
 @app.route("/add")
 def add():
-    if "addition" in request.form.keys():
+    if "addition" in request.form.keys() and "title" in request.form.keys():
+        if request.form["addition"] == "" || request.form["title"] == "":
+            return render_template("addstory.html")
+        else:
+            storyedit.add(request.form["addition"], request.form["title"])
+            return render_template("library.html", stories=storyreturn.all_stories())
     else:
         return render_template("addstory.html")
 
