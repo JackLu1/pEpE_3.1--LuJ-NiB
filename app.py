@@ -1,9 +1,10 @@
 from flask import Flask, render_template, redirect, url_for, request, session
 from util import storyreturn, storyedit
-from util import usrctrl as User
+from util import usrctrl 
 import os
 
 #TODO add flashing for failed login
+#TODO session checking
 
 app = Flask(__name__);
 
@@ -13,6 +14,7 @@ pw = '123'
 # generate secret key
 app.secret_key = os.urandom(32)
 
+
 @app.route("/")
 def root():
     '''If user not logged in, redirect to landing page. Otherwise redirect to welcome page'''
@@ -20,19 +22,21 @@ def root():
         return redirect(url_for("welcome"))
     return redirect(url_for("landing"))
 
+
 @app.route("/login", methods=["POST"])
 def auth():
     '''logs in the user'''
     check_usr = request.form["user"]
     check_pw = request.form["pass"]
 
-    # checks correct password
-    if check_pw != pw or check_usr != usr:
-        return redirect(url_for('root'))
+    # returns boolean value for success of login
+    if not usrctrl.login_check(check_usr, check_pw):
+        return redirect(url_for('landing'))
 
     #logs in the user, redirect to welcome page
     session[usr] = pw
     return redirect(url_for('welcome'))
+
 
 @app.route("/logout", methods=["POST"])
 def logout():
@@ -40,15 +44,12 @@ def logout():
     session.pop(usr)
     return redirect(url_for("landing"))
 
+
 @app.route("/splash")
 def landing():
     '''renders splash (landing) page'''
     return render_template("splash.html")
 
-@app.route("/login", methods=["POST"])
-def redir():
-    '''redirect to welcome page when login successful'''
-    return redirect(url_for("welcome"))
 
 @app.route("/welcome")
 def welcome():
@@ -60,6 +61,7 @@ def welcome():
 def library():
     '''renders a list of stories'''
     return render_template("library.html", stories=storyreturn.all_stories())
+
 
 @app.route("/edit", methods=["GET", "POST"])
 def edit():
@@ -82,6 +84,7 @@ def search():
     else:
         return render_template("search.html", e=False, stories=storyreturn.search(request.args["search"]))
 
+
 @app.route("/add", methods=["GET", "POST"])
 def add():
     if "addition" in request.form.keys() and "title" in request.form.keys():
@@ -92,6 +95,7 @@ def add():
             return render_template("library.html", stories=storyreturn.all_stories())
     else:
         return render_template("addstory.html")
+
 
 app.debug = True
 app.run()
