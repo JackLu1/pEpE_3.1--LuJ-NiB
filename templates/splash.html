@@ -7,29 +7,35 @@ Login
 {% block content %}
 <center>
 
-<br><br>
+    <br><br>
 
-<h1>super_story</h1>
+    <h1>super_story</h1>
 
-<br><br>
+    <br><br>
 
-	<form action="/login" name="main" method="POST">
+    <form action="/login" name="main" method="POST">
 
-		<input type="text" name="user" placeholder="Username">
+        <input type="text" name="user" placeholder="Username">
 
-		<br><br>
+        <br><br>
 
-		<input type="password" name="pass" placeholder="Password">
+        <input type="password" name="pass" placeholder="Password">
 
-		<br><br>
+        <br><br>
 
-		<button name="enter" type="submit">
-			Submit
-		</button>
+        <button name="enter" type="submit">
+            Submit
+        </button>
 
-	</form>
+    </form>
 
-<br><br>
+    <form action="/create" name="New User">
+        <button name="signup" type="submit">
+            Sign Up
+        </button>
+    </form>
+
+    <br><br>
 
 </center>
 {% endblock %}

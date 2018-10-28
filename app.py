@@ -9,8 +9,8 @@ import os
 app = Flask(__name__);
 
 # temporary hard coded user
-usr = 'jlu'
-pw = '123'
+usr = ''
+pw = ''
 # generate secret key
 app.secret_key = os.urandom(32)
 
@@ -26,22 +26,34 @@ def root():
 @app.route("/login", methods=["POST"])
 def auth():
     '''logs in the user'''
-    check_usr = request.form["user"]
-    check_pw = request.form["pass"]
+    usr = request.form["user"]
+    pw = request.form["pass"]
 
+    if usr == '' or pw == '':
+        return redirect(url_for("landing"))
     # returns boolean value for success of login
-    if not usrctrl.login_check(check_usr, check_pw):
+    if not usrctrl.login_check(usr, pw):
         return redirect(url_for('landing'))
 
     #logs in the user, redirect to welcome page
-    session[usr] = pw
+    session['username'] = usr
+    session['password'] = pw
     return redirect(url_for('welcome'))
+
+
+@app.route("/create")
+def new():
+    '''Creates new user in database'''
+    print("CREATE NEW USEREKLJRELKRJELKRJWELKJ")
+    return render_template("newUser.html") 
 
 
 @app.route("/logout", methods=["POST"])
 def logout():
     '''ends session, redirect back to landing page'''
-    session.pop(usr)
+    print(session)
+    session.pop('username')
+    session.pop('password')
     return redirect(url_for("landing"))
 
 
