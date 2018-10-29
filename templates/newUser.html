@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}
+Create New User
+{% endblock %}
+
+{% block content %}
+<center>
+    <h2>Please enter your username and password</h2>
+
+        <br><br>
+
+    <form action="/make_account" name="main" method="POST">
+        <input type="text" name="user" placeholder="Username">
+
+        <br><br>
+
+        <input type="password" name="pass" placeholder="Password">
+
+        <br><br>
+
+        <input type="password" name="confirm" placeholder="Confirm Password">
+
+        <br><br>
+
+        <button name="enter" type="submit">
+            Submit
+        </button>
+
+    </form>
+</center>
+{% endblock %}

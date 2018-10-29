@@ -4,13 +4,10 @@ from util import usrctrl
 import os
 
 #TODO add flashing for failed login
-#TODO session checking
+#TODO check stories for prev edit
 
 app = Flask(__name__);
 
-# temporary hard coded user
-usr = ''
-pw = ''
 # generate secret key
 app.secret_key = os.urandom(32)
 
@@ -18,7 +15,7 @@ app.secret_key = os.urandom(32)
 @app.route("/")
 def root():
     '''redirect to welcome page if user logged in, otherwise to landing page'''
-    if usr in session:
+    if 'user' in session:
         return redirect(url_for("welcome"))
     return redirect(url_for("landing"))
 
@@ -36,24 +33,32 @@ def auth():
         return redirect(url_for('landing'))
 
     #logs in the user, redirect to welcome page
-    session['username'] = usr
-    session['password'] = pw
+    session['user'] = usr
+    session['pass'] = pw
     return redirect(url_for('welcome'))
 
 
 @app.route("/create")
 def new():
-    '''Creates new user in database'''
-    print("CREATE NEW USEREKLJRELKRJELKRJWELKJ")
+    '''redirects from splash if creating new user'''
     return render_template("newUser.html") 
 
+@app.route("/make_account", methods=["POST"])
+def make_user():
+    '''Creates new user in database'''
+    usr = request.form["user"]
+    pw = request.form["pass"]
+    check = request.form["confirm"]
+    if pw != check:
+        return redirect(url_for('new'))
+    usrctrl.new_user(usr, pw) 
+    return redirect(url_for('landing'))
 
 @app.route("/logout", methods=["POST"])
 def logout():
     '''ends session, redirect back to landing page'''
-    print(session)
-    session.pop('username')
-    session.pop('password')
+    session.pop('user')
+    session.pop('pass')
     return redirect(url_for("landing"))
 
 
@@ -66,7 +71,7 @@ def landing():
 @app.route("/welcome")
 def welcome():
     '''welcomes user'''
-    return render_template("welcome.html", name=usr)
+    return render_template("welcome.html", name=session['user'])
 
 
 @app.route("/browse")
