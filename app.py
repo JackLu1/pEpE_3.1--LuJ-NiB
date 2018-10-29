@@ -77,18 +77,24 @@ def landing():
 @app.route("/welcome")
 def welcome():
     '''welcomes user'''
+    if 'user' not in session:
+        return redirect(url_for('landing'))
     return render_template("welcome.html", name=session['user'])
 
 
 @app.route("/browse")
 def library():
     '''renders a list of stories'''
+    if 'user' not in session:
+        return redirect(url_for('landing'))
     a = storyreturn.all_stories()
     return render_template("library.html", name=session['user'], stories=storyreturn.all_stories())
 
 @app.route("/edit", methods=["GET", "POST"])
 def edit():
     '''edit page for story'''
+    if 'user' not in session:
+        return redirect(url_for('landing'))
     sID = int(request.args["storylink"])
     
     # If user has already edited, display full story
@@ -107,6 +113,8 @@ def insert_story():
 @app.route("/search")
 def search():
     '''search results page'''
+    if 'user' not in session:
+        return redirect(url_for('landing'))
     s = storyreturn.search(request.args["search"])
     if len(s) == 0:
         return render_template("search.html", name=session['user'], e=True, stories=[])
@@ -116,6 +124,8 @@ def search():
 @app.route("/display")
 def show():
     '''Displays full story'''
+    if 'user' not in session:
+        return redirect(url_for('landing'))
     sID = request.args['sID']
     info = storyreturn.whole_story(sID)
     title = info.pop(0)
@@ -123,6 +133,8 @@ def show():
 
 @app.route("/add", methods=["GET", "POST"])
 def add():
+    if 'user' not in session:
+        return redirect(url_for('landing'))
     if "addition" in request.form.keys() and "title" in request.form.keys():
         if request.form["addition"] == "" or request.form["title"] == "":
             flash("Please fill in all fields")
