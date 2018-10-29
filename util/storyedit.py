@@ -1,6 +1,7 @@
 import sqlite3
 
 def edit(sID, addition):
+    '''this adds a new portion of the story to the story with story ID sID'''
     db = sqlite3.connect("data/data.db")
     c = db.cursor()
     c.execute("SELECT * FROM stories")
@@ -21,6 +22,7 @@ def edit(sID, addition):
     db.close()
 
 def add(addition, title):
+    '''this adds a completely new story with title title'''
     db = sqlite3.connect("data/data.db")
     c = db.cursor()
     c.execute("SELECT * FROM stories")
