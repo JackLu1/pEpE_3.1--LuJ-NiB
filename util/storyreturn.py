@@ -1,6 +1,7 @@
 import sqlite3
 
 def all_stories():
+    '''returns a list of all the stories (their most recent edits)'''
     db = sqlite3.connect("data/data.db")
     c = db.cursor()
 
@@ -14,6 +15,7 @@ def all_stories():
     return returnList
 
 def search( whatLook ):
+    '''searches through all stories and their titles for a match'''
     db = sqlite3.connect("data/data.db")
     c = db.cursor()
 
@@ -30,6 +32,7 @@ def search( whatLook ):
     return results
 
 def removeOverlap( stories ):
+    '''this is so that different edits don't show up multiple times for the same story'''
     overlaps = {}
 
     for tup in stories:
@@ -43,6 +46,7 @@ def removeOverlap( stories ):
     return returnList
 
 def get( sID ):
+    '''this is to fetch a specific story using it's ID'''
     db = sqlite3.connect("data/data.db")
     c = db.cursor()
 
