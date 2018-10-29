@@ -77,19 +77,19 @@ def welcome():
 @app.route("/browse")
 def library():
     '''renders a list of stories'''
-    return render_template("library.html", stories=storyreturn.all_stories())
+    return render_template("library.html", name=session['user'], stories=storyreturn.all_stories())
 
-
+# new route, check in edit method if need ot redirect to view method
 @app.route("/edit", methods=["GET", "POST"])
 def edit():
     '''edit page for story'''
     if "addition" not in list(request.form.keys()):
         sID = int(request.args["storylink"])
         story = storyreturn.get(sID)
-        return render_template("storybase.html", title=story[1], content=story[2], storyID=sID)
+        return render_template("storybase.html", title=story[1], name=session['user'], content=story[2], storyID=sID)
     else:
         storyedit.edit(int(request.form["storylink"]), request.form["addition"])
-        return render_template("library.html", stories=storyreturn.all_stories())
+        return render_template("library.html", name=session['user'], stories=storyreturn.all_stories())
 
 
 @app.route("/search")
@@ -97,21 +97,21 @@ def search():
     '''search results page'''
     s = storyreturn.search(request.args["search"])
     if len(s) == 0:
-        return render_template("search.html", e=True, stories=[])
+        return render_template("search.html", name=session['user'], e=True, stories=[])
     else:
-        return render_template("search.html", e=False, stories=storyreturn.search(request.args["search"]))
+        return render_template("search.html", name=session['user'], e=False, stories=storyreturn.search(request.args["search"]))
 
 
 @app.route("/add", methods=["GET", "POST"])
 def add():
     if "addition" in request.form.keys() and "title" in request.form.keys():
         if request.form["addition"] == "" or request.form["title"] == "":
-            return render_template("addstory.html")
+            return render_template("addstory.html", name=session['user'])
         else:
             storyedit.add(request.form["addition"], request.form["title"])
-            return render_template("library.html", stories=storyreturn.all_stories())
+            return render_template("library.html", name=session['user'], stories=storyreturn.all_stories())
     else:
-        return render_template("addstory.html")
+        return render_template("addstory.html", name=session['user'])
 
 
 app.debug = True
