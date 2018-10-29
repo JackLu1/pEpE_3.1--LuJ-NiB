@@ -60,3 +60,17 @@ def get( sID ):
             results[3] = tup[3]
     db.close()
     return results
+
+def whole_story( sID ):
+    '''returns all content of a story'''
+    db = sqlite3.connect('data/data.db')
+    c = db.cursor()
+    c.execute("SELECT title, content FROM stories WHERE storyid=(?)", (sID,))
+    # info is list of tuples
+    info = c.fetchall()
+    processed = []
+    processed.append(info[0][0])
+    #processed in format of list of strings
+    for i in info:
+        processed.append(i[1])
+    return processed

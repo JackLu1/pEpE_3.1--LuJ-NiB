@@ -1,6 +1,6 @@
 import sqlite3
 
-def edit(sID, addition):
+def edit(sID, addition, userid):
     '''this adds a new portion of the story to the story with story ID sID'''
     db = sqlite3.connect("data/data.db")
     c = db.cursor()
@@ -15,17 +15,21 @@ def edit(sID, addition):
         if sID == tup[0]:
             title = tup[1]
 
-    material = (sID, title, addition, max + 1, 0) # make sure 0 will be replaced with userid (get from users / signed in acc)
+    # gets userid of user currently in session
+
+    material = (sID, title, addition, max + 1, userid) 
 
     c.execute("INSERT INTO stories VALUES(?, ?, ?, ?, ?)", material)
     db.commit()
     db.close()
 
-def add(addition, title):
+def add(addition, title, userid):
     '''this adds a completely new story with title title'''
     db = sqlite3.connect("data/data.db")
     c = db.cursor()
+
     c.execute("SELECT * FROM stories")
+
     al = c.fetchall()
     mx = 0
     emx = 0
@@ -36,7 +40,7 @@ def add(addition, title):
         if tup[3] > emx:
             emx = tup[3]
 
-    material = (mx + 1, title, addition, emx + 1, 0) # make sure 0 will be replaced with userid (get from users / signed in acc)
+    material = (mx + 1, title, addition, emx + 1, userid) # make sure 0 will be replaced with userid (get from users / signed in acc)
 
     c.execute("INSERT INTO stories VALUES(?, ?, ?, ?, ?)", material)
     db.commit()

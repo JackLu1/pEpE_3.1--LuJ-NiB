@@ -8,28 +8,29 @@ Da Art of Storytellin' (Software Development)
 ## Instructions
 
 ##### Installing app directory  
-    git clone git@github.com:JackLu1/pEpE_3.1--LuJ-NiB.git
+    $ git clone git@github.com:JackLu1/pEpE_3.1--LuJ-NiB.git
 
 ##### Setting up a virtual environment - comes with python3
-    python3 -m venv <path-to-venv-directory>
+    $ pip install venv
+    $ python3 -m venv <path-to-venv-directory>
 To activate virtual environment:
 
-    . <path-to-venv>/bin/activate
+    $ . <path-to-venv>/bin/activate
 To deactivate:
 
-    deactivate
+    $ deactivate
 ##### Required tools
 Python3 - should be installed by default. If not, install from the
 [python website](https://www.python.org/downloads/).  
 
 Flask and Wheel - in commandline, run:  
 
-    sudo pip3 install flask  
-    sudo pip3 install wheel
+    $ sudo pip3 install flask  
+    $ sudo pip3 install wheel
 ##### Running the app
-This starts up the app locally.
+This starts up the app locally. In the cloned directory, execute:
 
-    python app.py
+    $ python app.py
 
 In your browser, type:
 

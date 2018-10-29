@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, request, session
+from flask import Flask, render_template, redirect, url_for, request, session, flash
 from util import storyreturn, storyedit
 from util import usrctrl 
 import os
@@ -11,6 +11,7 @@ app = Flask(__name__);
 # generate secret key
 app.secret_key = os.urandom(32)
 
+userid = None
 
 @app.route("/")
 def root():
@@ -27,14 +28,18 @@ def auth():
     pw = request.form["pass"]
 
     if usr == '' or pw == '':
+        flash('Unsuccessful login, try again')
         return redirect(url_for("landing"))
     # returns boolean value for success of login
     if not usrctrl.login_check(usr, pw):
+        flash('Unsuccessful login, try again')
         return redirect(url_for('landing'))
 
     #logs in the user, redirect to welcome page
     session['user'] = usr
     session['pass'] = pw
+    global userid
+    userid = usrctrl.getID(usr)
     return redirect(url_for('welcome'))
 
 
@@ -50,6 +55,7 @@ def make_user():
     pw = request.form["pass"]
     check = request.form["confirm"]
     if pw != check:
+        flash('Passwords do not match.')
         return redirect(url_for('new'))
     usrctrl.new_user(usr, pw) 
     return redirect(url_for('landing'))
@@ -77,19 +83,25 @@ def welcome():
 @app.route("/browse")
 def library():
     '''renders a list of stories'''
+    a = storyreturn.all_stories()
     return render_template("library.html", name=session['user'], stories=storyreturn.all_stories())
 
-# new route, check in edit method if need ot redirect to view method
 @app.route("/edit", methods=["GET", "POST"])
 def edit():
     '''edit page for story'''
-    if "addition" not in list(request.form.keys()):
-        sID = int(request.args["storylink"])
-        story = storyreturn.get(sID)
-        return render_template("storybase.html", title=story[1], name=session['user'], content=story[2], storyID=sID)
-    else:
-        storyedit.edit(int(request.form["storylink"]), request.form["addition"])
-        return render_template("library.html", name=session['user'], stories=storyreturn.all_stories())
+    sID = int(request.args["storylink"])
+    
+    # If user has already edited, display full story
+    if usrctrl.check_edited(userid, sID):
+        return redirect(url_for('show', sID=sID))
+
+    story = storyreturn.get(sID)
+    return render_template("storybase.html", title=story[1], name=session['user'], content=story[2], storyID=story[0])
+
+@app.route('/insert', methods=["GET", "POST"])
+def insert_story():
+    storyedit.edit(int(request.form['submit']), request.form["addition"], userid)
+    return render_template("library.html", name=session['user'], stories=storyreturn.all_stories())
 
 
 @app.route("/search")
@@ -101,14 +113,22 @@ def search():
     else:
         return render_template("search.html", name=session['user'], e=False, stories=storyreturn.search(request.args["search"]))
 
+@app.route("/display")
+def show():
+    '''Displays full story'''
+    sID = request.args['sID']
+    info = storyreturn.whole_story(sID)
+    title = info.pop(0)
+    return render_template("show.html", story_title=title, name=session["user"], content=info)
 
 @app.route("/add", methods=["GET", "POST"])
 def add():
     if "addition" in request.form.keys() and "title" in request.form.keys():
         if request.form["addition"] == "" or request.form["title"] == "":
+            flash("Please fill in all fields")
             return render_template("addstory.html", name=session['user'])
         else:
-            storyedit.add(request.form["addition"], request.form["title"])
+            storyedit.add(request.form["addition"], request.form["title"], userid)
             return render_template("library.html", name=session['user'], stories=storyreturn.all_stories())
     else:
         return render_template("addstory.html", name=session['user'])

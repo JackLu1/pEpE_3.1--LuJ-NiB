@@ -36,6 +36,10 @@ Login
     </form>
 
     <br><br>
-
+        {% set msgs = get_flashed_messages() %}
+        {% for each in msgs %}
+            {{each}}<br>
+        {% endfor %}
+    <br><br>
 </center>
 {% endblock %}
