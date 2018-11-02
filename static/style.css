@@ -1,0 +1,36 @@
+body {
+    background-color: YellowGreen;
+    
+}
+h1 {
+    color: blue;
+    font-family : timesnewroman;
+    font-size:400%;
+}
+
+
+form {
+    border: 1px  MediumSpringGreen;
+    
+}
+table {
+    border: 4px solid;
+    color: mediumspringGreen;
+    background-color: mediumvioletred;
+}
+textarea{
+    background-color: hotpink;
+    color: white;
+    
+}
+p{
+    color:red;
+}
+input{
+    padding: 5px;
+    
+}
+button{
+    color: white;
+    background-color: black;
+}
